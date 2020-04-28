@@ -14,12 +14,16 @@ jobs:
   build:
     name: Builds the project appstore-reverse-charger for multiple systems
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]  
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2.1.0
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Set up JDK
       uses: actions/setup-java@v1.3.0
       with:
@@ -37,7 +41,7 @@ jobs:
     needs: build
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2.1.0
+        uses: actions/checkout@latest
       - id: create release
         uses: actions/create-release@latest
         env:
@@ -49,10 +53,10 @@ jobs:
           draft: false
           prerelease: false
       - name: Downloads generated files (Linux)
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@latest
         with:
           name: charger-ubuntu-latest.zip
-      - uses: actions/upload-release-asset@v1.0.1
+      - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -64,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: charger-windows-latest.zip
-      - uses: actions/upload-release-asset@v1.0.1
+      - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -76,7 +80,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: javafx-testkit-macOS-latest.zip
-      - uses: actions/upload-release-asset@v1.0.1
+      - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
