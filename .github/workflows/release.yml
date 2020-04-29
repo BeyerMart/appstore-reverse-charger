@@ -23,11 +23,11 @@ jobs:
       with:
         java-version:  14
     - name: Ensure to use tagged version
-      run: mvn versions:set --file main/pom.xml -DnewVersion=${GITHUB_REF##*/} # use shell parameter expansion to strip of 'refs/tags'
+      run: mvn versions:set --file pom.xml -DnewVersion=${GITHUB_REF##*/} # use shell parameter expansion to strip of 'refs/tags'
       if: startsWith(github.ref, 'refs/tags/')
     - name: Build and Test
-      run: mvn -B install --file main/pom.xml
-    
+      run: mvn -B install --file pom.xml
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v1.0.0
       with:
