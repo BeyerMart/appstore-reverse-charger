@@ -32,7 +32,7 @@ jobs:
       uses: actions/upload-artifact@v1.0.0
       with:
         name: charger-${{matrix.os}}.zip
-        path: target
+        path: target/charger-${{matrix.os}}.zip
   release: 
     name: Creates a release
     runs-on: ubuntu-latest
@@ -54,13 +54,13 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: charger-ubuntu-latest.zip
-          path: .
+          #path: .
       - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: charger-ubuntu-latest.zip
+          asset_path: ./charher-ubuntu-latest/charger-ubuntu-latest.zip
           asset_name: charger-ubuntu-latest.zip
           asset_content_type: application/zip
       - name: Downloads generated files (Windows)
