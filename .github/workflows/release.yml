@@ -53,7 +53,7 @@ jobs:
       - name: Downloads generated files (Linux)
         uses: actions/download-artifact@v1
         with:
-          name: charger-ubuntu.zip
+          name: charger-ubuntu-latest.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
@@ -66,7 +66,7 @@ jobs:
       - name: Downloads generated files (Windows)
         uses: actions/download-artifact@v1
         with:
-          name: charger-windows.zip
+          name: charger-windows-latest.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
@@ -79,7 +79,7 @@ jobs:
       - name: Downloads generated files (MacOS)
         uses: actions/download-artifact@v1
         with:
-          name: charger-macOS.zip
+          name: charger-macOS-latest.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
