@@ -51,9 +51,9 @@ jobs:
           draft: false
           prerelease: false
       - name: Downloads generated files (Linux)
-        uses: actions/download-artifact@latest
+        uses: actions/download-artifact@v1
         with:
-          name: charger-ubuntu-latest.zip
+          name: charger-ubuntu.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
@@ -64,9 +64,9 @@ jobs:
           asset_name: charger-linux.zip
           asset_content_type: application/zip
       - name: Downloads generated files (Windows)
-        uses: actions/download-artifact@latest
+        uses: actions/download-artifact@v1
         with:
-          name: charger-windows-latest.zip
+          name: charger-windows.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
@@ -79,7 +79,7 @@ jobs:
       - name: Downloads generated files (MacOS)
         uses: actions/download-artifact@v1
         with:
-          name: charger-macOS-latest.zip
+          name: charger-macOS.zip
           path: .
       - uses: actions/upload-release-asset@latest
         env:
