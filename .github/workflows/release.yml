@@ -54,20 +54,20 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: charger-ubuntu-latest.zip
-          path: .
+          #path: .
       - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: charger-ubuntu-latest.zip
+          asset_path: ./charger-ubuntu-latest.zip/charger-ubuntu-latest.zip
           asset_name: charger-ubuntu-latest.zip
           asset_content_type: application/zip
       - name: Downloads generated files (Windows)
         uses: actions/download-artifact@v1
         with:
           name: charger-windows-latest.zip
-          path: .
+          #path: .
       - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -80,7 +80,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: charger-macOS-latest.zip
-          path: .
+          #path: .
       - uses: actions/upload-release-asset@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
